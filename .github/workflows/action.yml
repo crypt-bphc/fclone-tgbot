@@ -16,6 +16,14 @@ jobs:
       - name: Bot Install
         run: |
           git clone https://github.com/roshanconnor123/Fclone_Tg_Bot
+sync2:
+    runs-on: ubuntu-latest
+    name: tgbot2
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bot Install2
+        run: |
           cd Fclone_Tg_Bot
           pip3 install -r requirements.txt
           cat >  telegram_gcloner/config.ini  << EOF
@@ -24,3 +32,4 @@ jobs:
           sudo chmod +x fclone
           sudo chmod +x telegram_gcloner/telegram_gcloner.py
           sudo python3 telegram_gcloner/telegram_gcloner.py
+
