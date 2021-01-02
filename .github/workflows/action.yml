@@ -2,20 +2,20 @@ name: run bot
 
 on:
   schedule:
-    - cron: 0 */6 * * *
+    - cron: 0 11 * * *
   workflow_dispatch:
     inputs:
     
 jobs:
-  sync:
+  sync1:
     runs-on: ubuntu-latest
-    name: tgbot
+    name: tgbot1
 
     steps:
       - uses: actions/checkout@v2
-      - name: Bot Install
+      - name: Bot Install1
         run: |
-          git clone https://github.com/roshanconnor123/Fclone_Tg_Bot
+          git clone https://github.com/crypt-bphc/Fclone_Tg_Bot
           cd Fclone_Tg_Bot
           pip3 install -r requirements.txt
           cat >  telegram_gcloner/config.ini  << EOF
@@ -25,7 +25,7 @@ jobs:
           sudo chmod +x telegram_gcloner/telegram_gcloner.py
           sudo python3 telegram_gcloner/telegram_gcloner.py
   sync2:
-    needs : sync
+    needs : sync1
     runs-on: ubuntu-latest
     name: tgbot2
 
@@ -42,5 +42,39 @@ jobs:
           sudo chmod +x fclone
           sudo chmod +x telegram_gcloner/telegram_gcloner.py
           sudo python3 telegram_gcloner/telegram_gcloner.py
+  sync3:
+    needs : sync2
+    runs-on: ubuntu-latest
+    name: tgbot3
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bot Install3
+        run: |
+          git clone https://github.com/crypt-bphc/Fclone_Tg_Bot
+          cd Fclone_Tg_Bot
+          pip3 install -r requirements.txt
+          cat >  telegram_gcloner/config.ini  << EOF
+          ${{ secrets.BOT_CONFIG }}
+          EOF
+          sudo chmod +x fclone
+          sudo chmod +x telegram_gcloner/telegram_gcloner.py
+          sudo python3 telegram_gcloner/telegram_gcloner.py
+  sync4:
+    needs : sync3
+    runs-on: ubuntu-latest
+    name: tgbot4
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bot Install4
+        run: |
+          git clone https://github.com/crypt-bphc/Fclone_Tg_Bot
+          cd Fclone_Tg_Bot
+          pip3 install -r requirements.txt
+          cat >  telegram_gcloner/config.ini  << EOF
+          ${{ secrets.BOT_CONFIG }}
+          EOF
+          sudo chmod +x fclone
+          sudo chmod +x telegram_gcloner/telegram_gcloner.py
+          sudo python3 telegram_gcloner/telegram_gcloner.py 
