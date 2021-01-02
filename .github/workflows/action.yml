@@ -16,7 +16,7 @@ jobs:
       - name: Bot Install
         run: |
           git clone https://github.com/roshanconnor123/Fclone_Tg_Bot
-sync2:
+  sync2:
     runs-on: ubuntu-latest
     name: tgbot2
 
