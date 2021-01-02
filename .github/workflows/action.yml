@@ -19,7 +19,7 @@ jobs:
           cd Fclone_Tg_Bot
           pip3 install -r requirements.txt
           cat >  telegram_gcloner/config.ini  << EOF
-          ${{ secrets.GCLONE_CONFIG_SYNC }}
+          ${{ secrets.BOT_CONFIG }}
           EOF
           sudo chmod +x fclone
           sudo chmod +x telegram_gcloner/telegram_gcloner.py
