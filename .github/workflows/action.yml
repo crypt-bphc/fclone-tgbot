@@ -18,6 +18,9 @@ jobs:
           git clone https://github.com/roshanconnor123/Fclone_Tg_Bot
           cd Fclone_Tg_Bot
           pip3 install -r requirements.txt
+          cat >  telegram_gcloner/config.ini  << EOF
+          ${{ secrets.GCLONE_CONFIG_SYNC }}
+          EOF
           sudo chmod +x fclone
           sudo chmod +x telegram_gcloner/telegram_gcloner.py
           sudo python3 telegram_gcloner/telegram_gcloner.py
